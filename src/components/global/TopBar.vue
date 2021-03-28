@@ -168,7 +168,8 @@
         @click="account = !account"
         class="rounded-full shadow-lg cursor-pointer w-8 h-8"
       >
-        <img alt="leafage" :src="user.avatar" class="rounded-full" />
+        <!-- <img alt="leafage" :src="user.avatar" class="rounded-full" /> -->
+        <img alt="leafage" src="public/images/avatar.jpg" class="rounded-full" />
       </div>
       <router-link
         v-else
@@ -181,7 +182,7 @@
         class="origin-top-right p-4 absolute w-48 right-0 mt-4 rounded-md shadow-lg bg-white z-10"
       >
         <div class="py-2">
-          <div class="font-medium" v-text="user.nickname"></div>
+          <div class="font-medium" v-text="user.username"></div>
           <div class="text-xs" v-text="user.username"></div>
         </div>
         <div>
@@ -305,9 +306,8 @@ export default defineComponent({
     });
 
     const signout = () => {
-      instance.post("/logout").then(() => {
-        router.push("/signin");
-      });
+      sessionStorage.removeItem("user");
+      router.push("/signin");
     };
 
     return {

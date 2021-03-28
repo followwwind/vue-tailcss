@@ -53,6 +53,16 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Category',
         component: () => import('/src/views/assets/Category.vue')
       },
+      {
+        path: 'me',
+        name: 'me',
+        component: () => import('/src/views/assets/Me.vue')
+      },
+      {
+        path: 'api',
+        name: 'api',
+        component: () => import('/src/views/assets/Api.vue')
+      }
     ]
   },
   {

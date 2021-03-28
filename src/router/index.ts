@@ -10,6 +10,11 @@ const router = createRouter({
 router.beforeEach(to => {
   if (to.fullPath === '/signin') {
     sessionStorage.removeItem("user")
+  } else if(to.fullPath != '/signup'){
+    let data = sessionStorage.getItem("user");
+    if(!data){
+      router.push("/signin");
+    }
   }
   return true
 })

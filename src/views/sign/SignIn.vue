@@ -80,7 +80,7 @@
                   name="username"
                   v-model="formData.username"
                   class="w-full rounded-md focus:ring-1 outline-none ring-blue-300 py-2 px-3 lg:py-3 lg:px-4 border border-gray-300 block"
-                  placeholder="Username/Phone/Email"
+                  placeholder="Username"
                   required
                   autocomplete="off"
                 />
@@ -110,7 +110,7 @@
               <div class="mt-5 xl:mt-8 text-center xl:text-left">
                 <button
                   type="submit"
-                  @click="onSumbit"
+                  @click="onSubmit"
                   class="w-full xl:w-32 focus:outline-none text-white bg-blue-600 hover:bg-blue-700 hover:text-white xl:mr-3 py-2 px-3 lg:py-3 lg:px-4 rounded-md"
                 >
                   Login
@@ -151,23 +151,31 @@ export default defineComponent({
     const formData = ref({});
 
     function onSubmit() {
-      instance.post("/login", qs.stringify(formData.value)).then((res) => {
-        if (res.data.username) {
-          fetchUser(res.data.username);
-        }
-        router.replace("/");
+      // console.log('login');
+      // instance.post(SERVER_URL.user, formData.value).then((res) => {
+      //   // if (res.data.username) {
+      //   //   fetchUser(res.data.username);
+      //   // }
+      //   console.log(res.data.data);
+      //   // sessionStorage.setItem("user", JSON.stringify(res.data.data));
+      //   // router.replace("/");
+      // });
+      instance.post(SERVER_URL.user, formData.value).then((res) => {
+        // console.log(res.data.data);
+        sessionStorage.setItem("user", JSON.stringify(res.data.data));
+        router.push("/");
       });
     }
 
     async function fetchUser(username: string) {
-      await instance.get(SERVER_URL.user.concat("/", username)).then((res) => {
-        sessionStorage.setItem("user", JSON.stringify(res.data));
-      });
+      // await instance.get(SERVER_URL.user.concat("/", username)).then((res) => {
+      //   sessionStorage.setItem("user", JSON.stringify(res.data));
+      // });
     }
 
     // 欲提交，请求csrfToken
     function preSubmit() {
-      instance.get("/check");
+      // instance.get("/check");
     }
 
     const toSignUp = () => {
@@ -175,7 +183,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      preSubmit();
+      // preSubmit();
     });
 
     return {

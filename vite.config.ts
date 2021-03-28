@@ -19,14 +19,15 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly'
     }
   },
-  // server: {
-  //   proxy: {
-  //     // 选项写法
-  //     '/api': {
-  //       target: 'http://localhost:8760',
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api/, '')
-  //     }
-  //   }
-  // }
+  server: {
+    port: 8080,
+    // proxy: {
+    //   // 选项写法
+    //   '/api': {
+    //     target: 'http://localhost:5000',
+    //     changeOrigin: true,
+    //     // rewrite: (path) => path.replace(/^\/api/, '')
+    //   }
+    // }
+  }
 })

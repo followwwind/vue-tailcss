@@ -74,10 +74,10 @@
               <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
           </div>
-          <div class="hidden xl:flex items-center w-full">Dashboard</div>
+          <div class="hidden xl:flex items-center w-full">首页</div>
         </router-link>
       </li>
-      <li>
+      <!-- <li>
         <a
           href="#"
           @click.prevent="isSystemOpen = !isSystemOpen"
@@ -253,10 +253,10 @@
             </router-link>
           </li>
         </ul>
-      </li>
+      </li> -->
       <li class="hover:bg-blue-100 hover:bg-opacity-10 rounded-l-full relative">
         <router-link
-          to="/posts"
+          to="/me"
           class="flex items-center h-12 rounded-l-full pl-5 -mr-5"
           exact
         >
@@ -279,10 +279,10 @@
               ></path>
             </svg>
           </div>
-          <div class="w-full hidden xl:flex items-center">Posts</div>
+          <div class="w-full hidden xl:flex items-center">我的量化</div>
         </router-link>
       </li>
-      <li class="hover:bg-blue-100 hover:bg-opacity-10 rounded-l-full relative">
+      <!-- <li class="hover:bg-blue-100 hover:bg-opacity-10 rounded-l-full relative">
         <router-link
           to="/portfolio"
           class="flex items-center h-12 rounded-l-full pl-5 -mr-5"
@@ -309,10 +309,10 @@
           </div>
           <div class="w-full hidden xl:flex items-center">Portfolio</div>
         </router-link>
-      </li>
+      </li> -->
       <li class="hover:bg-blue-100 hover:bg-opacity-10 rounded-l-full relative">
         <router-link
-          to="/category"
+          to="/api"
           class="flex items-center h-12 rounded-l-full pl-5 -mr-5"
           exact
         >
@@ -335,7 +335,7 @@
               <line x1="7" y1="7" x2="7.01" y2="7"></line>
             </svg>
           </div>
-          <div class="w-full hidden xl:flex items-center">Category</div>
+          <div class="w-full hidden xl:flex items-center">Api</div>
         </router-link>
       </li>
     </ul>

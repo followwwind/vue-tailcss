@@ -80,11 +80,11 @@
                   name="username"
                   v-model="formData.username"
                   class="w-full rounded-md focus:ring-1 outline-none ring-blue-300 py-2 px-3 lg:py-3 lg:px-4 border border-gray-300 block"
-                  placeholder="Nickname"
+                  placeholder="Username"
                   required
                   autocomplete="off"
                 />
-                <input
+                <!-- <input
                   type="text"
                   name="username"
                   v-model="formData.username"
@@ -92,12 +92,12 @@
                   placeholder="Username/Phone/Email"
                   required
                   autocomplete="off"
-                />
+                /> -->
                 <input
                   type="password"
                   name="password"
                   v-model="formData.password"
-                  class="w-full rounded-md focus:ring-1 outline-none ring-blue-300 py-2 px-3 lg:py-3 lg:px-4 border border-gray-300 block"
+                  class="w-full rounded-md mt-4 focus:ring-1 outline-none ring-blue-300 py-2 px-3 lg:py-3 lg:px-4 border border-gray-300 block"
                   placeholder="Password"
                   required
                   autocomplete="off"
@@ -161,8 +161,9 @@ export default defineComponent({
     const formData = ref({});
 
     function onSubmit() {
-      instance.post("/login", qs.stringify(formData.value)).then(() => {
-        router.push("/");
+      instance.put("/api/user/", formData.value).then((res) => {
+        console.log(res);
+        // router.push("/");
       });
     }
 

@@ -61,18 +61,18 @@ export default defineComponent({
   name: "Action",
 
   props:{
-    code:{
-      type: String,
-      default: ''
+    obj:{
+      type: Object,
+      default: {}
     }
   },
 
   methods: {
     openConfirm() {
-      this.$emit("delAction", true);
+      this.$emit("delAction", true, this.obj);
     },
     openModel() {
-      this.$emit("editAction", true, this.code);
+      this.$emit("editAction", true, this.obj);
     },
   },
 });

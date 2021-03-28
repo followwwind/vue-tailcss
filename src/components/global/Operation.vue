@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center sm:ml-auto">
-    <button
+    <!-- <button
       class="hidden p-2 rounded-md bg-white sm:flex items-center text-gray-700 border hover:text-blue-600 hover:border-blue-600 focus:outline-none"
     >
       <svg
@@ -49,7 +49,7 @@
         <polyline points="10 9 9 9 8 9"></polyline>
       </svg>
       Export to PDF
-    </button>
+    </button> -->
     <button
       @click="operate"
       class="ml-3 p-2 rounded-md bg-blue-600 flex items-center text-white hover:bg-blue-700 focus:outline-none border"

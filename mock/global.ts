@@ -9,22 +9,22 @@ export default [
             }
         },
     },
-    {
-        url: 'login',
-        method: 'post',
-        response: () => {
-            return {
-                username: 'little3201'
-            }
-        },
-    },
-    {
-        url: 'logout',
-        method: 'post',
-        response: () => {
-            return {
+    // {
+    //     url: 'login',
+    //     method: 'post',
+    //     response: () => {
+    //         return {
+    //             username: 'little3201'
+    //         }
+    //     },
+    // },
+    // {
+    //     url: 'logout',
+    //     method: 'post',
+    //     response: () => {
+    //         return {
 
-            }
-        },
-    },
+    //         }
+    //     },
+    // },
 ] as MockMethod[];
