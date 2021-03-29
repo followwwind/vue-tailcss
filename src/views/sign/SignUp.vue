@@ -162,7 +162,7 @@ export default defineComponent({
 
     function onSubmit() {
       instance.put("/api/user/", formData.value).then((res) => {
-        console.log(res);
+        // console.log(res);
         // router.push("/");
       });
     }

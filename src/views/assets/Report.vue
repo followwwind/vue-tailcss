@@ -74,7 +74,8 @@
           </div>
         </div>
       </div>
-      <div class="col-span-12 sm:col-span-6 xl:col-span-3">
+      -->
+      <div class="col-span-12 sm:col-span-4 xl:col-span-3">
         <div class="zoom-in">
           <div class="shadow-sm rounded-md bg-white p-5">
             <div class="flex">
@@ -94,7 +95,7 @@
                 <line x1="1" y1="10" x2="23" y2="10"></line>
               </svg>
               <div class="ml-auto">
-                <div
+                <!-- <div
                   class="flex items-center rounded-full px-2 py-1 text-xs text-white bg-red-600 cursor-pointer"
                   title="2% Lower than last month"
                 >
@@ -114,15 +115,15 @@
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <polyline points="19 12 12 19 5 12"></polyline>
                   </svg>
-                </div>
+                </div> -->
               </div>
             </div>
-            <div class="text-3xl font-bold leading-8 mt-6">3.521</div>
-            <div class="text-base text-gray-600 mt-1">New Orders</div>
+            <div class="text-3xl font-bold leading-8 mt-6">{{user.realValueAll}}</div>
+            <div class="text-base text-gray-600 mt-1">总资产</div>
           </div>
         </div>
-      </div> -->
-      <!-- <div class="col-span-12 sm:col-span-6 xl:col-span-3">
+      </div>
+      <div class="col-span-12 sm:col-span-4 xl:col-span-3">
         <div class="relative zoom-in">
           <div class="shadow-sm rounded-md bg-white p-5">
             <div class="flex">
@@ -143,7 +144,7 @@
                 <line x1="12" y1="17" x2="12" y2="21"></line>
               </svg>
               <div class="ml-auto">
-                <div
+                <!-- <div
                   class="flex items-center rounded-full px-2 py-1 text-xs text-white cursor-pointer"
                   style="background-color: #91c714"
                   title="12% Higher than last month"
@@ -164,15 +165,15 @@
                     <line x1="12" y1="19" x2="12" y2="5"></line>
                     <polyline points="5 12 12 5 19 12"></polyline>
                   </svg>
-                </div>
+                </div> -->
               </div>
             </div>
-            <div class="text-3xl font-bold leading-8 mt-6">2.145</div>
-            <div class="text-base text-gray-600 mt-1">Total Products</div>
+            <div class="text-3xl font-bold leading-8 mt-6">{{user.profit}}</div>
+            <div class="text-base text-gray-600 mt-1">总收益</div>
           </div>
         </div>
-      </div> -->
-      <div class="col-span-12 sm:col-span-12 xl:col-span-3 -y">
+      </div>
+      <div class="col-span-12 sm:col-span-4 xl:col-span-3 -y">
         <div class="relative zoom-in">
           <div class="shadow-sm rounded-md bg-white p-5">
             <div class="flex">
@@ -192,7 +193,7 @@
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
               <div class="ml-auto">
-                <div
+                <!-- <div
                   class="flex items-center rounded-full px-2 py-1 text-xs text-white cursor-pointer"
                   style="background-color: #91c714"
                   title="22% Higher than last month"
@@ -213,34 +214,34 @@
                     <line x1="12" y1="19" x2="12" y2="5"></line>
                     <polyline points="5 12 12 5 19 12"></polyline>
                   </svg>
-                </div>
+                </div> -->
               </div>
             </div>
-            <div class="text-3xl font-bold leading-8 mt-6">152.000</div>
-            <div class="text-base text-gray-600 mt-1">Unique Visitor</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-span-12 sm:col-span-12">
-        <div class="relative zoom-in">
-          <div class="shadow-sm rounded-md bg-white p-5">
-            <div ref="barChartRef" class="w-full h-80"></div>
+            <div class="text-3xl font-bold leading-8 mt-6">{{user.profitPct > 0 ? '+' + user.profitPct : user.profitPct}}</div>
+            <div class="text-base text-gray-600 mt-1">收益率</div>
           </div>
         </div>
       </div>
       <!-- <div class="col-span-12 sm:col-span-12">
         <div class="relative zoom-in">
           <div class="shadow-sm rounded-md bg-white p-5">
-            <div ref="lineChartRef" class="w-full h-80"></div>
+            <div ref="barChartRef" class="w-full h-80"></div>
           </div>
         </div>
       </div> -->
+      <div class="col-span-12 sm:col-span-12">
+        <div class="relative zoom-in">
+          <div class="shadow-sm rounded-md bg-white p-5">
+            <div ref="lineChartRef" class="w-full h-80"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted, computed } from "vue";
 import echarts from "../../plugins/echarts";
 
 import instance from "../../api";
@@ -253,44 +254,46 @@ export default defineComponent({
     const barChartRef = ref();
     const lineChartRef = ref();
 
-    const barchartInit = () => {
-      const barChart = echarts.init(barChartRef.value);
-      barChart.resize();
-      instance.get(SERVER_URL.category).then((res) => {
-        barChart.setOption({
-          legend: {},
-          tooltip: {},
-          dataset: {
-            source: [
-              ["product", "Add", "Edit", "Del"],
-              ["Sun", 4, 8, 0],
-              ["Mon", 9, 4, 1],
-              ["Tue", 4, 2, 2],
-              ["Wes", 7, 9, 1],
-              ["Thu", 7, 9, 1],
-              ["Fri", 7, 9, 1],
-              ["Sat", 7, 9, 1],
-            ],
-          },
-          xAxis: { type: "category" },
-          yAxis: {},
-          // Declare several bar series, each will be mapped
-          // to a column of dataset.source by default.
-          series: [{ type: "bar" }, { type: "bar" }, { type: "bar" }],
-        });
-      });
-    };
+    const user = computed(() => {
+      let data = sessionStorage.getItem("user");
+      if (data) {
+        return JSON.parse(data);
+      }
+      return {};
+    });
 
     const linechartInit = () => {
       const lineChart = echarts.init(lineChartRef.value);
       lineChart.resize();
-      instance.get(SERVER_URL.category).then((res) => {
+      let param = {
+          'pageNum': 1,
+          'pageSize': 100,
+          'num': 2
+      }
+      instance.post(SERVER_URL.assert.concat('line'), param).then((res) => {
+        let data = res.data.data.data;
+        console.log(data);
+        // console.log(data.length);
+        let timeArr = [];
+        let totalArr = [];
+        let profitPctArr = [];
+        for(var i = 0; i < data.length; i++){
+          // console.log(data[i]);
+          timeArr.push(data[i]['dateTime']);
+          totalArr.push(data[i]['realValueAll']);
+          profitPctArr.push(data[i]['profitPct']);
+        }
+        // console.log(timeArr);
         lineChart.setOption({
           tooltip: {
             trigger: "axis",
           },
           legend: {
-            data: ["Add", "Edit", "Del"],
+            data: ["总资产", "收益率"],
+            selected:{
+              '总资产':true,
+              '收益率':false
+            }
           },
           grid: {
             left: "3%",
@@ -306,30 +309,40 @@ export default defineComponent({
           xAxis: {
             type: "category",
             boundaryGap: false,
-            data: ["Sun", "Mon", "Tue", "Wes", "Thu", "Fri", "Sat"],
+            data: timeArr,
+            axisLabel: {
+                interval: 1,
+                rotate: -40
+            }
           },
           yAxis: {
             type: "value",
+            min: (value) => {
+              return Math.floor(value.min / 100) * 100; 
+            },
+            max: (value) => {
+              return Math.ceil(value.max / 100) * 100;
+            }
           },
           series: [
             {
-              name: "Add",
+              name: "总资产",
               type: "line",
               stack: "总量",
-              data: [120, 132, 101, 134, 90, 230, 210],
+              data: totalArr,
             },
             {
-              name: "Edit",
+              name: "收益率",
               type: "line",
               stack: "总量",
-              data: [220, 182, 191, 234, 290, 330, 310],
+              data: profitPctArr,
             },
-            {
-              name: "Del",
-              type: "line",
-              stack: "总量",
-              data: [150, 232, 201, 154, 190, 330, 410],
-            },
+            // {
+            //   name: "Del",
+            //   type: "line",
+            //   stack: "总量",
+            //   data: [150, 232, 201, 154, 190, 330, 410],
+            // },
           ],
         });
       });
@@ -337,14 +350,13 @@ export default defineComponent({
 
     onMounted(() => {
       setTimeout(() => {
-        barchartInit();
-        // linechartInit();
+        linechartInit();
       }, 100);
     });
 
     return {
-      barChartRef,
-      // lineChartRef,
+      lineChartRef,
+      user
     };
   },
 });
