@@ -152,6 +152,7 @@ import { defineComponent, ref, onMounted } from "vue";
 import router from "../../router";
 
 import instance from "../../api";
+import SERVER_URL from "../../api/request";
 import qs from "qs";
 
 export default defineComponent({
@@ -161,7 +162,7 @@ export default defineComponent({
     const formData = ref({});
 
     function onSubmit() {
-      instance.put("/api/user/", formData.value).then((res) => {
+      instance.put(SERVER_URL.user, formData.value).then((res) => {
         // console.log(res);
         // router.push("/");
       });

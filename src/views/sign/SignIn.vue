@@ -140,7 +140,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
 import router from "../../router";
-
+import { ElMessage } from 'element-plus'
 import qs from "qs";
 
 import instance from "../../api";
@@ -160,11 +160,15 @@ export default defineComponent({
       //   // sessionStorage.setItem("user", JSON.stringify(res.data.data));
       //   // router.replace("/");
       // });
-      instance.post(SERVER_URL.user, formData.value).then((res) => {
-        // console.log(res.data.data);
-        sessionStorage.setItem("user", JSON.stringify(res.data.data));
-        router.push("/");
-      });
+      ElMessage.success({
+            message: '恭喜你，这是一条成功消息',
+            type: 'success'
+          });
+      // instance.post(SERVER_URL.user, formData.value).then((res) => {
+      //   // console.log(res.data.data);
+      //   sessionStorage.setItem("user", JSON.stringify(res.data.data));
+      //   router.push("/");
+      // });
     }
 
     async function fetchUser(username: string) {
