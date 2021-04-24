@@ -1,5 +1,6 @@
 import axios, { Canceler } from 'axios'
 import router from '../router'
+import { ElMessage } from 'element-plus'
 
 const redirectTo = (path: string) => {
   requestList.length && requestList.length > 0 && requestList.forEach((cancleRequest, index) => {
@@ -36,14 +37,16 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   res => {
     // 用户不存在，跳转注册
-    if (res.status === 204) {
-      setTimeout(() => { redirectTo('/signup') }, 300)
-    }
+    // if (res.status === 204) {
+    //   setTimeout(() => { redirectTo('/signup') }, 300)
+    // }
+    // console.log(res);
     return res
   },
   error => {
     const { response } = error
     if (response) {
+      // console.log(response);
       // 状态码判断
       switch (response.status) {
         // 401: 未登录状态，403：无权限，跳转登录页
@@ -54,7 +57,12 @@ instance.interceptors.response.use(
         // 404/500请求不存在
         case 404:
         case 500:
-          response.statusText = '服务可能罢工了，刷新试试。'
+          // response.statusText = '服务可能罢工了，刷新试试。'
+          // console.log('服务可能罢工了，刷新试试。');
+          ElMessage.error({
+            message: response.data.msg || '服务可能罢工了，刷新试试。',
+            type: 'error'
+          });
           break
         default:
           response.statusText = '请求可能跑丢了，再试一下。'
@@ -66,6 +74,10 @@ instance.interceptors.response.use(
       // network状态在app.vue中控制着一个全局的断网提示组件的显示隐藏
       // 关于断网组件中的刷新重新获取数据，会在断网组件中说明
       // store.commit('changeNetwork', false)
+      ElMessage.error({
+        message: '服务可能罢工了，刷新试试。',
+        type: 'error'
+      });
     }
     return Promise.reject(error)
   }

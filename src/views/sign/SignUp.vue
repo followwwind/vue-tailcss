@@ -149,6 +149,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
+import { ElMessage } from 'element-plus'
 import router from "../../router";
 
 import instance from "../../api";
@@ -160,11 +161,15 @@ export default defineComponent({
 
   setup() {
     const formData = ref({});
-
+    let that = this;
     function onSubmit() {
       instance.put(SERVER_URL.user, formData.value).then((res) => {
         // console.log(res);
-        // router.push("/");
+         ElMessage.success({
+            message: '注册成功',
+            type: 'success'
+          });
+        router.push("/");
       });
     }
 

@@ -160,15 +160,19 @@ export default defineComponent({
       //   // sessionStorage.setItem("user", JSON.stringify(res.data.data));
       //   // router.replace("/");
       // });
-      ElMessage.success({
-            message: '恭喜你，这是一条成功消息',
+      // ElMessage.success({
+      //       message: '恭喜你，这是一条成功消息',
+      //       type: 'success'
+      //     });
+      instance.post(SERVER_URL.user, formData.value).then((res) => {
+        ElMessage.success({
+            message: '登录成功',
             type: 'success'
           });
-      // instance.post(SERVER_URL.user, formData.value).then((res) => {
-      //   // console.log(res.data.data);
-      //   sessionStorage.setItem("user", JSON.stringify(res.data.data));
-      //   router.push("/");
-      // });
+        // console.log(res.data.data);
+        sessionStorage.setItem("user", JSON.stringify(res.data.data));
+        router.push("/");
+      });
     }
 
     async function fetchUser(username: string) {
