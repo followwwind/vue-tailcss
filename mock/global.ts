@@ -1,14 +1,14 @@
 import { MockMethod } from 'vite-plugin-mock';
 export default [
-    {
-        url: 'check',
-        method: 'get',
-        response: () => {
-            return {
+    // {
+    //     url: 'check',
+    //     method: 'get',
+    //     response: () => {
+    //         return {
 
-            }
-        },
-    },
+    //         }
+    //     },
+    // },
     // {
     //     url: 'login',
     //     method: 'post',

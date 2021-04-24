@@ -169,7 +169,7 @@
         class="rounded-full shadow-lg cursor-pointer w-8 h-8"
       >
         <!-- <img alt="leafage" :src="user.avatar" class="rounded-full" /> -->
-        <img alt="leafage" src="public/images/avatar.jpg" class="rounded-full" />
+        <img alt="leafage" src="./../../assets/images/avatar.jpg" class="rounded-full" />
       </div>
       <router-link
         v-else
@@ -283,7 +283,6 @@
 <script lang="ts">
 import { computed, defineComponent, ref } from "vue";
 import router from "../../router";
-
 import instance from "../../api";
 
 export default defineComponent({
