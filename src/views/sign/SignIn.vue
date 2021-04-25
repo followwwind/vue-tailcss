@@ -110,7 +110,6 @@
               <div class="mt-5 xl:mt-8 text-center xl:text-left">
                 <button
                   type="submit"
-                  @click="onSubmit"
                   class="w-full xl:w-32 focus:outline-none text-white bg-blue-600 hover:bg-blue-700 hover:text-white xl:mr-3 py-2 px-3 lg:py-3 lg:px-4 rounded-md"
                 >
                   Login
@@ -148,7 +147,10 @@ import SERVER_URL from "../../api/request";
 
 export default defineComponent({
   setup() {
-    const formData = ref({});
+    const formData = {
+      username: '',
+      password: ''
+    };
 
     function onSubmit() {
       // console.log('login');
@@ -164,7 +166,8 @@ export default defineComponent({
       //       message: '恭喜你，这是一条成功消息',
       //       type: 'success'
       //     });
-      instance.post(SERVER_URL.user, formData.value).then((res) => {
+      console.log(formData);
+      instance.post(SERVER_URL.user, formData).then((res) => {
         ElMessage.success({
             message: '登录成功',
             type: 'success'

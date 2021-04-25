@@ -338,7 +338,7 @@ export default defineComponent({
             // console.log(response);
           },
           (error) => {
-            alert(error.statusText);
+            // alert(error.statusText);
           }
         );
     }

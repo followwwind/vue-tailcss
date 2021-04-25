@@ -12,10 +12,14 @@ const redirectTo = (path: string) => {
 
 // 默认配置
 const config = {
-  withCredentials: true,
+  headers:{
+    'Content-Type': 'application/json',
+  },
+  timeout: 30000,
+  // withCredentials: true,
   // 请求的完整路径就是baseURL中的
-  baseURL: 'http://localhost:5000'
-  // baseURL: 'http://152.32.185.136:5000'
+  // baseURL: 'http://localhost:5000'
+  baseURL: 'http://152.32.185.136:5000'
 }
 
 const instance = axios.create(config)

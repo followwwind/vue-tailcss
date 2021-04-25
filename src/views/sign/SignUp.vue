@@ -126,7 +126,6 @@
               >
                 <button
                   type="submit"
-                  @click="onSumbit"
                   class="w-full xl:w-32 focus:outline-none text-white bg-blue-600 hover:bg-blue-700 hover:text-white xl:mr-3 py-2 px-3 lg:py-3 lg:px-4 rounded-md"
                 >
                   Register
@@ -160,16 +159,20 @@ export default defineComponent({
   name: "SignUp",
 
   setup() {
-    const formData = ref({});
+    const formData = {
+      username: '',
+      password: '',
+      confirm: ''
+    };
     let that = this;
     function onSubmit() {
-      instance.put(SERVER_URL.user, formData.value).then((res) => {
+      instance.put(SERVER_URL.user, formData).then((res) => {
         // console.log(res);
          ElMessage.success({
             message: '注册成功',
             type: 'success'
           });
-        router.push("/");
+        router.push("/sign");
       });
     }
 
@@ -183,7 +186,7 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      preSubmit();
+      // preSubmit();
     });
 
     return {
